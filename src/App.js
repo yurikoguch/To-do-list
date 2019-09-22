@@ -1,34 +1,72 @@
+
 import React from 'react';
-import Title from './Components/Title';
-import Form from './Components/Form';
-import List from './Components/List';
+import Title from './Components/Title/Title';
+import List from './Components/List/List';
+import shortid from 'shortid'
+
 
 
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: [], text: '', };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
-        state = {
-            tasks: []
+
+
+    }
+
+    handleChange(e) {
+        this.setState({ text: e.target.value });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        if (!this.state.text.length) {
+            return;
+        }
+
+
+
+        const newItem = {
+            text: this.state.text,
+            id: shortid.generate(),
         };
 
-        addTask = task => {
-            this.setState({
-                tasks:[task, ...this.state.tasks],
-            });
-        };
+
+        this.setState(state => ({
+            items: state.items.concat(newItem),
+            text: '',
+        }));
+    }
 
     render() {
-
         return (
-            <div className={'App'}>
-                <Title/>
-                <Form onSubmit={this.addTask}/>
-                {this.state.tasks.map(task => (
-                    <List key={task.id} text={task.text}/>
-                ))}
+            <div>
+                <Title />
+                <List
+                    key={this.state.id}
+                    items={this.state.items}
+                />
+                <form onSubmit={this.handleSubmit} >
+                    <input
+                        onChange={this.handleChange}
+                        value={this.state.text}
+                    />
+                    <button>
+                        Add #{this.state.items.length + 1}
+                    </button>
+                </form>
             </div>
         );
-    };
-};
+    }
+
+
+}
+
 
 export default  App
+
+
