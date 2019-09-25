@@ -1,40 +1,27 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import React from 'react';
-import shortid from 'shortid'
+import { jsx, css } from '@emotion/core'
+import React from 'react'
 
+const List = ({
+    items,
+}) => (
+    <table css={styledTable}>
+        <tbody>
+            {items.map((item, i) => (
+                <tr
+                    key={item.id}
+                    css={styledRow}
+                >
+                    <td>{i + 1}</td>
+                    <td>{item.text}</td>
+                    <td key={Math.round(4)}>{item.date}</td>
+                </tr>   
+            ))}
+        </tbody>
+    </table>
+)
 
-class List extends React.Component {
-    constructor() {
-        super();
-
-        var today = new Date(),
-            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
-        this.state = {
-            date: date,
-            id: shortid.generate(),
-        };
-    }
-
-    render() {
-        return (
-            <table css = {styledTable}>
-                {this.props.items.map(item => (
-                    <tbody css = {styledRow}>
-                    <tr >
-                        <td key={this.state.date}>{item.text}</td>
-                        <td key={Math.round(4)}>{this.state.date}</td>
-                    </tr>
-                    </tbody>
-                ))}
-            </table>
-        );
-    };
-};
-
-
-export default List;
+export default List
 
 /////////styles///////////
 
@@ -53,6 +40,4 @@ const styledRow = css `
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  `
-
-
+`
