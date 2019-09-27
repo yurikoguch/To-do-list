@@ -3,6 +3,8 @@ import React from 'react'
 import Title from './Components/Title/Title'
 import List from './Components/List/List'
 import shortid from 'shortid'
+import StyledInput from "./styled/StyledInput";
+import StyledButton from "./styled/StyledButton";
 
 class App extends React.Component {
     constructor(props) {
@@ -57,13 +59,14 @@ class App extends React.Component {
 
                 {/* TODO: move it into separate component (functional) */}
                 <form onSubmit={handleSubmit} >
-                    <input
+                    <StyledInput
                         onChange={handleChange}
                         value={text}
+                        placeholder="Please enter tasks"
                     />
-                    <button>
+                    <StyledButton>
                         Add #{items.length + 1}
-                    </button>
+                    </StyledButton>
                 </form>
             </div>
         )

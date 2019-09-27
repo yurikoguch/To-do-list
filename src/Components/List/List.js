@@ -1,16 +1,17 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core'
+
 import React from 'react'
+import StyledTable from './styled/StyledTable';
+
 
 const List = ({
     items,
 }) => (
-    <table css={styledTable}>
+    < StyledTable>
         <tbody>
             {items.map((item, i) => (
                 <tr
                     key={item.id}
-                    css={styledRow}
+
                 >
                     <td>{i + 1}</td>
                     <td>{item.text}</td>
@@ -18,26 +19,7 @@ const List = ({
                 </tr>   
             ))}
         </tbody>
-    </table>
+    </StyledTable>
 )
 
 export default List
-
-/////////styles///////////
-
-const styledTable = css `
-  margin: 0;
-  padding: 30px 0 30px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  `
-
-
-const styledRow = css `
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
