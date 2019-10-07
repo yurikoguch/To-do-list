@@ -13,6 +13,9 @@ class App extends React.Component {
             items: [],
             text: '',
         }
+
+        this.removeTodo = this.removeTodo.bind(this);
+
     }
 
     handleChange = e => {
@@ -41,6 +44,14 @@ class App extends React.Component {
         }))
     }
 
+    removeTodo(i){
+        let arr = this.state.items.slice();
+       arr.splice(i, 1);
+        this.setState({items: arr});
+    }
+
+
+
     render() {
         const {
             items,
@@ -54,7 +65,9 @@ class App extends React.Component {
             <div>
                 <Title />
                 <List
-                    items={items}
+                    items={this.state.items}
+                    removeTodo={this.removeTodo}
+                    editText={this.editText}
                 />
 
                 {/* TODO: move it into separate component (functional) */}

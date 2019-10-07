@@ -6,5 +6,6 @@ const StyledTable = styled.table`
   background: -webkit-linear-gradient(45deg, #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); 
   width: 100%;
   text-align: center;
+  line-height: 55px;
 `
 export default StyledTable
